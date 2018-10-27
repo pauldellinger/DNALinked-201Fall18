@@ -23,28 +23,30 @@ public class LinkStrand implements IDnaStrand{
 	   public LinkStrand(String s) {
 			initialize(s);
 			
-			
+			//constructs the linkstrand object using initialize method
 			
 			
 		}
 	   
 	public LinkStrand(){
 		this("");
+		//default linkstrand constructor that uses an empty string
 	}
 	
 	
 	
 	@Override
 	public long size() {
-		// TODO Auto-generated method stub
 		
+		//returns the size of the dna
 		
 		return mySize;
 	}
 
 	@Override
 	public void initialize(String source) {
-		// TODO Auto-generated method stub
+		// initializes the instance variables for the object
+		//sets up linked list
 		myFirst = new Node(source);
 		
 		
@@ -65,13 +67,20 @@ public class LinkStrand implements IDnaStrand{
 
 	@Override
 	public IDnaStrand getInstance(String source) {
-		// TODO Auto-generated method stub
+		// makes a new linkstrand object for a given dna sequence
 		return new LinkStrand(source);
 	}
 
 	@Override
 	public IDnaStrand append(String dna) {
-		// TODO Auto-generated method stub
+		/**
+		 * adds a new node to the linkstrand
+		 * object. The new node is appended
+		 * to the end of the linked list.
+		 * mySize and myAppend are updated accordingly,
+		 * mySize adds the length of the string added
+		 * and myAppend just increases by one
+		 */
 		Node newNode = new Node(dna);
         //newNode.info = null;
         if (myFirst == null) {
@@ -94,7 +103,12 @@ public class LinkStrand implements IDnaStrand{
 
 	@Override
 	public IDnaStrand reverse() {
-		// TODO Auto-generated method stub
+		/**
+		 * for a given linkstrand object
+		 * reverse the order. First reverse the
+		 * order of string contained in each node
+		 * and then the order of the nodes themselves
+		 */
 		LinkStrand reversed = new LinkStrand();
 		Node current = new Node(null);
 		current = myFirst;
@@ -116,7 +130,7 @@ public class LinkStrand implements IDnaStrand{
 
 	@Override
 	public int getAppendCount() {
-		// TODO Auto-generated method stub
+		// returns the number the linkstrand object has been appended
 		return myAppends;
 	}
 
