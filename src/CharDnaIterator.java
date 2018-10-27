@@ -25,6 +25,8 @@ public class CharDnaIterator implements Iterator<Character> {
 	}
 	
 	/**
+	 * 
+	 * 
 	 * Standard Iterator hasNext() method
 	 * @return true if there is a next character,
 	 * false otherwise
@@ -33,6 +35,7 @@ public class CharDnaIterator implements Iterator<Character> {
 	public boolean hasNext(){
 		return myIndex < myStrand.size();
 	}
+	//testing if i can push
 	
 	/**
 	 * Standard iterator next() functionality, i.e.,
