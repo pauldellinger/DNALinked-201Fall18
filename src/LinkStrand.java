@@ -48,11 +48,11 @@ public class LinkStrand implements IDnaStrand{
 		// initializes the instance variables for the object
 		//sets up linked list
 		myFirst = new Node(source);
-		
+		myLast = new Node("");
 		
 		
 		myFirst.next = myLast;
-		
+		myLast.next = null;
 		//myFirst.info = s;
 		//myFirst.next = myLast;
 		//myLast.info =s;
@@ -89,7 +89,7 @@ public class LinkStrand implements IDnaStrand{
             newNode.next = null;
         }
         else {
-        	myFirst.next= newNode;
+        	myLast.next= newNode;
         	myLast = newNode;
         }
         
@@ -136,7 +136,7 @@ public class LinkStrand implements IDnaStrand{
 
 	@Override
 	public char charAt(int index) {
-		
+		if (index>= this.size()) throw new IndexOutOfBoundsException();
 		int myIndex = 0;
 		int myLocalIndex = 0;
 		
@@ -148,6 +148,7 @@ public class LinkStrand implements IDnaStrand{
 				myCurrent = myCurrent.next;
 			}
 		}
+		
            return myCurrent.info.charAt(myLocalIndex);
         }
 	
