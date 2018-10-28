@@ -49,7 +49,7 @@ public class LinkStrand implements IDnaStrand{
 		//sets up linked list
 		myFirst = new Node(source);
 		myLast = new Node("");
-		
+		myLast = myFirst;
 		
 		myFirst.next = myLast;
 		myLast.next = null;
@@ -165,7 +165,7 @@ public class LinkStrand implements IDnaStrand{
 				//System.out.println("my char: " +myCurrent.info.charAt(myLocalIndex) + "\n");
 				if (myCurrent.next.info == null) throw new IndexOutOfBoundsException("out of nodes");
 				myCurrent = myCurrent.next;
-				while(myCurrent.info == "") myCurrent = myCurrent.next;
+				//while(myCurrent.info == "") myCurrent = myCurrent.next;
 				//System.out.print("next node: "+ myCurrent.info);
 				//System.out.print("\n"+"do we get here?");
 				
