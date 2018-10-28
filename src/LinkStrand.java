@@ -109,7 +109,7 @@ public class LinkStrand implements IDnaStrand{
 		 * order of string contained in each node
 		 * and then the order of the nodes themselves
 		 */
-		LinkStrand reversed = new LinkStrand("");
+		LinkStrand reversed = new LinkStrand();
 		Node current = new Node(null);
 		current = myFirst;
 		
@@ -117,13 +117,16 @@ public class LinkStrand implements IDnaStrand{
 			
 			StringBuilder copy = new StringBuilder(current.info);
 			copy.reverse();
-			Node first =new Node(copy.toString());
+			Node first = new Node(copy.toString());
 			
 			first.next = reversed.myFirst;
+			if (reversed.myLast == null) {
+				reversed.myLast = reversed.myFirst;
+				reversed.myLast.next = null;
+			}
 			reversed.myFirst = first;
-			//reversed.append(copy.toString());
-			//reversed.myFirst = reversed.myLast.next;
-			if (myAppends ==0) return reversed;
+			
+			
 			current = current.next;
 			
 		}
