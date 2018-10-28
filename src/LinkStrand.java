@@ -82,7 +82,7 @@ public class LinkStrand implements IDnaStrand{
 		 * and myAppend just increases by one
 		 */
 		Node newNode = new Node(dna);
-        //newNode.info = null;
+        
         if (myFirst == null) {
             myFirst = newNode;
             myLast = newNode;
@@ -109,11 +109,12 @@ public class LinkStrand implements IDnaStrand{
 		 * order of string contained in each node
 		 * and then the order of the nodes themselves
 		 */
-		LinkStrand reversed = new LinkStrand();
+		LinkStrand reversed = new LinkStrand("");
 		Node current = new Node(null);
 		current = myFirst;
-		reversed.myLast = current;
+		
 		while (current != null) {
+			
 			StringBuilder copy = new StringBuilder(current.info);
 			copy.reverse();
 			Node first =new Node(copy.toString());
@@ -122,6 +123,7 @@ public class LinkStrand implements IDnaStrand{
 			reversed.myFirst = first;
 			//reversed.append(copy.toString());
 			//reversed.myFirst = reversed.myLast.next;
+			if (myAppends ==0) return reversed;
 			current = current.next;
 			
 		}
@@ -136,7 +138,7 @@ public class LinkStrand implements IDnaStrand{
 
 	@Override
 	public char charAt(int index) {
-		if (index>= this.size()) throw new IndexOutOfBoundsException();
+		if (index >= this.size()) throw new IndexOutOfBoundsException();
 		int myIndex = 0;
 		int myLocalIndex = 0;
 		
