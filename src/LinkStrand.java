@@ -148,15 +148,15 @@ public class LinkStrand implements IDnaStrand{
 		if (index >= this.size()) throw new IndexOutOfBoundsException("out of bounds gah");
 		//System.out.print("my node: " + myCurrent.info+ "\n");
 		//System.out.print("my NEXT node: " + myCurrent.next.info);
-		
+		if (index<myIndex) {
+			myIndex = 0;
+			myLocalIndex=0;
+			myCurrent = myFirst;
+		}
 		while (myIndex != index) {
 			//System.out.print("up 1 "+"\n");
 			
-			if (index<myIndex) {
-				myIndex = 0;
-				myLocalIndex=0;
-				myCurrent = myFirst;
-			}
+			
 			
 			myIndex++;
 			myLocalIndex++;
