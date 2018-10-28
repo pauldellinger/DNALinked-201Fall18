@@ -139,12 +139,23 @@ public class LinkStrand implements IDnaStrand{
 
 	@Override
 	public int getAppendCount() {
-		// returns the number the linkstrand object has been appended
+		// returns the number of times the linkstrand object has been appended
 		return myAppends;
 	}
 
 	@Override
 	public char charAt(int index) {
+		/**
+		 * returns the character of the LinkStrand
+		 * for a particular index as if the the link
+		 * strand was just one giant string. It does
+		 * this by searching through each node. The time
+		 * is O(1) to find the character because it 
+		 * relies on three instance variables including
+		 * myCurrent - the current node being searched.
+		 * This means for adjacent searches you are 
+		 * only need to go through the loop once.  
+		 */
 		if (index >= this.size()) throw new IndexOutOfBoundsException("out of bounds gah");
 		if (index<0) throw new IndexOutOfBoundsException("invalid index");
 

@@ -12,7 +12,7 @@ with the explanation below that the time to execute cutAndSplice is O(b2S)?
 
 Yes, at the higher values you can see as the splicee doubles, the time 
 also approximately doubles. This fits the hypothesis that time is proportional
-to s
+to s.
 
 dna length = 4,639,221
 cutting at enzyme gaattc
@@ -45,23 +45,28 @@ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
 Question 2: are the benchmark timings for StringBuilderStrand consistent 
 with the explanation below that the time to execute cutAndSplice is O(bS)? 
 
+The data are not consistent with this explanation, as at low splicee
+counts the time is just as high as the increased splicee counts. The
+lowest times are in the middle which isn't consistent with O(bs)
+	
+	
 dna length = 4,639,221
 cutting at enzyme gaattc
 -----
 Class	                splicee	      recomb	time	appends
 -----
-StringBuilderStrand:	            256	      4,800,471	0.030	1290
-StringBuilderStrand:	            512	      4,965,591	0.020	1290
-StringBuilderStrand:	          1,024	      5,295,831	0.007	1290
-StringBuilderStrand:	          2,048	      5,956,311	0.007	1290
-StringBuilderStrand:	          4,096	      7,277,271	0.010	1290
-StringBuilderStrand:	          8,192	      9,919,191	0.009	1290
-StringBuilderStrand:	         16,384	     15,203,031	0.013	1290
-StringBuilderStrand:	         32,768	     25,770,711	0.026	1290
-StringBuilderStrand:	         65,536	     46,906,071	0.042	1290
-StringBuilderStrand:	        131,072	     89,176,791	0.100	1290
-StringBuilderStrand:	        262,144	    173,718,231	0.175	1290
-StringBuilderStrand:	        524,288	    342,801,111	0.316	1290
+StringBuilderStrand:	            256	      4,800,471	0.034	1290
+StringBuilderStrand:	            512	      4,965,591	0.026	1290
+StringBuilderStrand:	          1,024	      5,295,831	0.014	1290
+StringBuilderStrand:	          2,048	      5,956,311	0.010	1290
+StringBuilderStrand:	          4,096	      7,277,271	0.006	1290
+StringBuilderStrand:	          8,192	      9,919,191	0.008	1290
+StringBuilderStrand:	         16,384	     15,203,031	0.017	1290
+StringBuilderStrand:	         32,768	     25,770,711	0.019	1290
+StringBuilderStrand:	         65,536	     46,906,071	0.028	1290
+StringBuilderStrand:	        131,072	     89,176,791	0.074	1290
+StringBuilderStrand:	        262,144	    173,718,231	0.212	1290
+StringBuilderStrand:	        524,288	    342,801,111	0.307	1290
 Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
 	at java.base/java.util.Arrays.copyOf(Unknown Source)
 	at java.base/java.lang.AbstractStringBuilder.ensureCapacityInternal(Unknown Source)
@@ -69,18 +74,21 @@ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
 	at java.base/java.lang.StringBuilder.append(Unknown Source)
 	at StringBuilderStrand.append(StringBuilderStrand.java:70)
 	at IDnaStrand.cutAndSplice(IDnaStrand.java:41)
-	at DNABenchmark.strandSpliceBenchmark(DNABenchmark.java:67)
-	at DNABenchmark.main(DNABenchmark.java:113)
-	
-The data are not consistent with this explanation, as at low splicee
-counts the time is just as high as the increased splicee counts. The
-lowest time is in the middle which isn't consistent with O(bs)
-	
+	at DNABenchmark.strandSpliceBenchmark(DNABenchmark.java:68)
+	at DNABenchmark.main(DNABenchmark.java:114)
+
  
 
 Question 3: Explain why the time for LinkStrand does not change much at all over 
 all the runs in the benchmark program. Explain why you think memory is exhausted 
 at the specific strand size you see in your timings -- as compared to exhaustion for String and StringBuilder.
+
+
+LinkStrand is O(1) to index characters when an adjacent character has been indexed, 
+and is able to point to a repeated sequence without creating new memory space. 
+It runs out of memory space because even with saving space pointing to the same
+repeated sequences it still can run out of memory - the amount of unique strings 
+is too high. 
 
 dna length = 4,639,221
 cutting at enzyme gaattc
@@ -116,7 +124,4 @@ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
 	at java.base/java.lang.StringBuilder.append(Unknown Source)
 	at DNABenchmark.main(DNABenchmark.java:110)
 
-
-LinkStrand is O(1) to index characters, and is able to point to a repeated 
-sequence without creating new memory space. 
 
