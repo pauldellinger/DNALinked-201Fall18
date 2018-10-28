@@ -59,6 +59,7 @@ public class LinkStrand implements IDnaStrand{
 		//myLast.next = null;
 		mySize = source.length();
 		myAppends = 0;
+		
 		myIndex = 0;
 		myLocalIndex = 0;
 		myCurrent = myFirst;
@@ -144,20 +145,25 @@ public class LinkStrand implements IDnaStrand{
 
 	@Override
 	public char charAt(int index) {
-		if (index > this.size()) throw new IndexOutOfBoundsException();
-		int myIndex = 0;
-		int myLocalIndex = 0;
+		if (index >= this.size()) throw new IndexOutOfBoundsException("out of bounds gah");
+		//System.out.print("my node: " + myCurrent.info);
+		//System.out.print("my NEXT node: " + myCurrent.next.info);
 		
 		while (myIndex != index) {
+			//System.out.print("up 1 "+"\n");
 			myIndex++;
 			myLocalIndex++;
 			if (myLocalIndex >= myCurrent.info.length()) {
 				myLocalIndex = 0;
+				
+				if (myCurrent.next.info == null) throw new IndexOutOfBoundsException("out of nodes");
 				myCurrent = myCurrent.next;
+				//System.out.print("do we get here?");
+				
 			}
 		}
-		
-           return myCurrent.info.charAt(myLocalIndex);
+		System.out.println(myCurrent.info.charAt(myLocalIndex) + "\n");
+        return myCurrent.info.charAt(myLocalIndex);
         }
 	
 	@Override
