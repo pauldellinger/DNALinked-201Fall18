@@ -151,12 +151,13 @@ public class LinkStrand implements IDnaStrand{
 		
 		while (myIndex != index) {
 			//System.out.print("up 1 "+"\n");
+			/**
 			if (index<myIndex) {
 				myIndex = 0;
 				myLocalIndex=0;
 				myCurrent = myFirst;
 			}
-			
+			*/
 			myIndex++;
 			myLocalIndex++;
 			
