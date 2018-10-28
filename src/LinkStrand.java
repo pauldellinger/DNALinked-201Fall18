@@ -123,8 +123,11 @@ public class LinkStrand implements IDnaStrand{
 			if (reversed.myLast == null) {
 				reversed.myLast = reversed.myFirst;
 				reversed.myLast.next = null;
+				
 			}
 			reversed.myFirst = first;
+			reversed.mySize += copy.length();
+			reversed.myAppends ++;
 			
 			
 			current = current.next;
@@ -141,7 +144,7 @@ public class LinkStrand implements IDnaStrand{
 
 	@Override
 	public char charAt(int index) {
-		if (index >= this.size()) throw new IndexOutOfBoundsException();
+		if (index > this.size()) throw new IndexOutOfBoundsException();
 		int myIndex = 0;
 		int myLocalIndex = 0;
 		
